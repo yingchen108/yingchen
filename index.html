@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    <title>穎誠車業 - 首頁</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 圖片滾動容器 */
+        .gallery-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 滾動圖片 */
+        .scroll-gallery {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        /* 圖片設定 */
+        .scroll-gallery img {
+            width: 100vw;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        /* 最新消息區 */
+        .news {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            margin: 20px auto;
+            width: 90%;
+            border-radius: 8px;
+        }
+
+        /* 社群連結區 */
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .social-links img {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* LINE 加好友按鈕 */
+        .line-button {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            width: 200px;
+            background: #06c755;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">穎誠車業</div>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="booking.html">預約維修</a></li>
+            <li><a href="mod-shop.html">改裝精品</a></li>
+            <li><a href="parts-shop.html">車子零件</a></li>
+            <li><a href="cars.html">車子介紹</a></li>
+        </ul>
+    </nav>
+
+    <section class="banner">
+        <div class="gallery-container">
+            <div class="scroll-gallery">
+                <img src="images/index/photo.jpg" alt="照片 1">
+                <img src="images/index/photo2.jpg" alt="照片 2">
+                <img src="images/index/photo3.jpg" alt="照片 3">
+                <img src="images/index/photo.jpg" alt="複製的第一張"> <!-- 讓動畫無縫銜接 -->
+            </div>
+        </div>
+        <h1>專業機車維修與改裝</h1>
+        <p>提供最優質的服務，讓您的愛車煥然一新</p>
+    </section>
+
+    <!-- 🔥 最新消息區塊 -->
+    <section class="news">
+        <h2>📢 最新消息</h2>
+        <p>🔥 春季優惠活動開跑！維修保養 8 折優惠，快來預約！</p>
+    </section>
+
+    <!-- 🚀 社群連結 -->
+    <section class="social-links">
+        <h2>📱 官方社群</h2>
+        <a href="https://www.facebook.com/" target="_blank">
+            <img src="images/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/" target="_blank">
+            <img src="images/instagram.png" alt="Instagram">
+        </a>
+    </section>
+
+    <!-- 💬 LINE 按鈕 -->
+    <a href="https://line.me/ti/p/你的LINE_ID" target="_blank" class="line-button">
+        加入我們的 LINE
+    </a>
+
+    <section class="features">
+        <div class="feature">
+            <h2>預約維修</h2>
+            <p>快速預約，專業服務</p>
+            <a href="booking.html"><button>立即預約</button></a>
+        </div>
+        <div class="feature">
+            <h2>改裝精品</h2>
+            <p>精選機車改裝配件</p>
+            <a href="mod-shop.html"><button>前往選購</button></a>
+        </div>
+        <div class="feature">
+            <h2>車子零件</h2>
+            <p>原廠與副廠零件供應</p>
+            <a href="parts-shop.html"><button>查看零件</button></a>
+        </div>
+        <div class="feature">
+            <h2>車子介紹</h2>
+            <p>最新車款與二手車買賣</p>
+            <a href="cars.html"><button>查看車款</button></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 穎誠車業. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const gallery = document.querySelector(".scroll-gallery");
+            const images = document.querySelectorAll(".scroll-gallery img");
+            let index = 0; 
+            const totalImages = images.length - 1; 
+            const transitionTime = 1000; 
+            const displayTime = 3000;
+
+            function autoScroll() {
+                index++; 
+
+                if (index >= totalImages) {
+                    gallery.style.transition = `transform ${transitionTime}ms ease-in-out`;
+                    gallery.style.transform = `translateX(-${index * 100}vw)`;
+
+                    setTimeout(() => {
+                        gallery.style.transition = "none";
+                        index = 0;
+                        gallery.style.transform = `translateX(0)`;
+                    }, transitionTime);
+                } else {
+                    gallery.style.transition = `transform ${transitionTime}ms ease-in-out`;
+                    gallery.style.transform = `translateX(-${index * 100}vw)`;
+                }
+            }
+
+            setInterval(autoScroll, displayTime + transitionTime);
+        });
+    </script>
+</body>
+</html>
